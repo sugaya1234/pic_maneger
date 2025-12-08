@@ -36,21 +36,26 @@
             </thead>
 
             <tbody>
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="py-2 px-4">001</td>
-                    <td class="py-2 px-4">00001</td>
-                    <td class="py-2 px-4">00001</td>
-                    <td class="py-2 px-4">00001</td>
-                    <td class="py-2 px-4">
-                        {{-- 修正/削除機能を追加 --}}
-                        <span class="text-gray-400 text-sm">修正/削除</span>
-                    </td>
-                </tr>
+                @foreach($pics as $pic)
+                    <tr class="border-b hover:bg-gray-50">
+                        <td>{{ $pic->department_code }}</td>
+                        <td>{{ $pic->shop_code }}</td>
+                        <td>{{ $pic->customer_code }}</td>
+                        <td>{{ $pic->pic_code }}</td>
+                        <td class="py-2 px-4">
+                            {{-- 修正/削除機能を追加 --}}
+                            <span class="text-gray-400 text-sm">修正/削除</span>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 
     {{-- ページネーション --}}
+    <div class="mt-4">
+        {{ $pics->links() }}
+    </div>
 
 </div>
 </body>
