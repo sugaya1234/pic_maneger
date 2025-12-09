@@ -11,10 +11,78 @@
     {{-- ページタイトル --}}
     <h1 class="text-2xl font-bold mb-6">担当者管理システム</h1>
 
-    {{-- 上部アクション（検索欄・新規作成ボタンは後で追加） --}}
+    {{-- 上部アクション（新規作成ボタンは後で追加） --}}
     <div class="flex justify-between items-center mb-4">
         <div>
-            {{-- 検索フォームを追加 --}}
+            {{-- 検索フォーム --}}
+            <form id="searchForm" action="{{ route('pic.index') }}" method="get" class="flex gap-4 items-end flex-wrap">
+                <div class="flex flex-col">
+                    <label for="department" class="text-sm">部門</label>
+                    <input type="text"
+                        name="department"
+                        id="department"
+                        class="uppercase border border-gray-300 rounded px-2 py-1 w-24"
+                        value="{{ request('department') }}"
+                        maxlength="3"
+                        pattern="[0-9A-Za-z]+"
+                        title="半角英数字3文字以内で入力してください">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="shop" class="text-sm">SHOP</label>
+                    <input type="text"
+                        name="shop"
+                        id="shop"
+                        class="uppercase border border-gray-300 rounded px-2 py-1 w-24"
+                        value="{{ request('shop') }}"
+                        maxlength="5"
+                        pattern="[0-9A-Za-z]+"
+                        title="半角英数字5文字以内で入力してください">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="customer" class="text-sm">取引先</label>
+                    <input type="text"
+                        name="customer"
+                        id="customer"
+                        class="uppercase border border-gray-300 rounded px-2 py-1 w-24"
+                        value="{{ request('customer') }}"
+                        maxlength="5"
+                        pattern="[0-9A-Za-z]+"
+                        title="半角英数字5文字以内で入力してください">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="pic" class="text-sm">担当者</label>
+                    <input type="text"
+                        name="pic"
+                        id="pic"
+                        class="uppercase border border-gray-300 rounded px-2 py-1 w-24"
+                        value="{{ request('pic') }}"
+                        maxlength="5"
+                        pattern="[0-9A-Za-z]+"
+                        title="半角英数字5文字以内で入力してください">
+                </div>
+
+                <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    検索
+                </button>
+
+                {{-- リセット --}}
+                    <button type="button"
+                            onclick="clearFormValues()"
+                            class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">
+                        リセット
+                    </button>
+
+                    <script>
+                    function clearFormValues() {
+                        const inputs = document.querySelectorAll('#searchForm input[type="text"]');
+                        inputs.forEach(input => input.value = '');
+                    }
+                    </script>
+            </form>
         </div>
 
         <div>
