@@ -33,11 +33,22 @@ class PicService
             $query->where('pic_code', 'LIKE', $pic . '%');
         }
 
-        return $query->orderBy('department_code')
-                     ->orderBy('shop_code')
-                     ->orderBy('customer_code')
-                     ->orderBy('pic_code')
-                     ->paginate(20)
-                     ->appends($request->query());
+        // ソート設定
+        $allowSort = [
+            'department_code',
+            'shop_code',
+            'customer_code',
+            'pic_code',
+        ];
+
+        $sort = $request->input('sort');
+        $sort = in_array($sort, $allowSort, true) ? $sort : 'department_code';
+
+        $direction = $request->input('direction');
+        $direction = in_array($direction, ['asc', 'desc'], true) ? $direction : 'asc';
+
+        $direction = $request->input('direction', 'asc');
+
+        return $query->orderBy($sort, $direction)->paginate(20)->withQueryString();
     }
 }

@@ -103,10 +103,66 @@
         <table class="min-w-full text-left border-collapse">
             <thead class="bg-gray-100 border-b">
                 <tr>
-                    <th class="py-3 px-4 text-sm font-medium text-gray-700">部門</th>
-                    <th class="py-3 px-4 text-sm font-medium text-gray-700">Shop</th>
-                    <th class="py-3 px-4 text-sm font-medium text-gray-700">取引先</th>
-                    <th class="py-3 px-4 text-sm font-medium text-gray-700">担当者</th>
+                    <th class="py-3 px-4 text-sm font-medium text-gray-700">
+                        <a href="{{ route('pic.index', [
+                            'sort' => 'department_code',
+                            'direction' => request('direction') === 'asc' ? 'desc' : 'asc'
+                        ]) }}" class="hover:text-gray-500 cursor-pointer">
+                            部門
+                            @if (request('sort') === 'department_code')
+                                @if (request('direction') === 'asc')
+                                    ▲
+                                @else
+                                    ▼
+                                @endif
+                            @endif
+                        </a>
+                    </th>
+                    <th class="py-3 px-4 text-sm font-medium text-gray-700">
+                        <a href="{{ route('pic.index', [
+                            'sort' => 'shop_code',
+                            'direction' => request('direction') === 'asc' ? 'desc' : 'asc'
+                        ]) }}" class="hover:text-gray-500 cursor-pointer">
+                            SHOP
+                            @if (request('sort') === 'shop_code')
+                                @if (request('direction') === 'asc')
+                                    ▲
+                                @else
+                                    ▼
+                                @endif
+                            @endif
+                        </a>
+                    </th>
+                    <th class="py-3 px-4 text-sm font-medium text-gray-700">
+                        <a href="{{ route('pic.index', [
+                            'sort' => 'customer_code',
+                            'direction' => request('direction') === 'asc' ? 'desc' : 'asc'
+                        ]) }}" class="hover:text-gray-500 cursor-pointer">
+                            取引先
+                            @if (request('sort') === 'customer_code')
+                                @if (request('direction') === 'asc')
+                                    ▲
+                                @else
+                                    ▼
+                                @endif
+                            @endif
+                        </a>
+                    </th>
+                    <th class="py-3 px-4 text-sm font-medium text-gray-700">
+                        <a href="{{ route('pic.index', [
+                            'sort' => 'pic_code',
+                            'direction' => request('direction') === 'asc' ? 'desc' : 'asc'
+                        ]) }}" class="hover:text-gray-500 cursor-pointer">
+                            担当者
+                            @if (request('sort') === 'pic_code')
+                                @if (request('direction') === 'asc')
+                                    ▲
+                                @else
+                                    ▼
+                                @endif
+                            @endif
+                        </a>
+                    </th>
                     <th class="py-3 px-4 text-sm font-medium text-gray-700">編集</th>
                 </tr>
             </thead>
