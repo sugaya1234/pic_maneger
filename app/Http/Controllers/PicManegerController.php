@@ -7,9 +7,9 @@ use App\Services\PicService;
 
 class PicManegerController extends Controller
 {
-    public function index(Request $request, PicService $service)
+    public function index(Request $request, PicService $picService)
     {
-        $pics = $service->getList($request);
+        $pics = $picService->getList($request);
 
         return view('index', compact('pics'));
     }

@@ -90,6 +90,14 @@
         </div>
     </div>
 
+    <div class="mb-4 text-sm text-gray-600">
+        @if ($pics->total() > 0)
+            検索結果：{{ $pics->firstItem() }}〜{{ $pics->lastItem() }}件 / 全{{ $pics->total() }}件
+        @else
+            検索結果：0件
+        @endif
+    </div>
+
     {{-- 一覧表示用テーブル --}}
     <div class="overflow-x-auto bg-white rounded shadow">
         <table class="min-w-full text-left border-collapse">
